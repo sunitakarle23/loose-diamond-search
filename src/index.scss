@@ -1,0 +1,18 @@
+// global variables
+$font-stack: "BaskervilleBE-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$primary-color: #333;
+$text-color: #d7d5d5;
+$background-color: #afafaf;
+$border-color: #ccc;
+
+
+// global mixins
+.disabled {
+	cursor: not-allowed;
+	opacity: 0.65;
+	filter: alpha(opacity=65);
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	pointer-events: none;
+}
+
