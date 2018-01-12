@@ -1,12 +1,11 @@
 {
-  "name": "react-redux-ecomm",
+  "name": "loose-diamond-search",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "antd": "^3.1.1",
     "axios": "^0.16.2",
     "babel-polyfill": "^6.26.0",
-    "bootstrap": "3",
     "classnames": "^2.2.5",
     "deep-equal": "^1.0.1",
     "easyzoom": "^2.5.0",
@@ -35,7 +34,6 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "react-scroll": "^1.5.4",
     "react-select": "^1.0.0-rc.8",
-    "react-slick": "^0.15.0",
     "react-sticky": "^6.0.1",
     "react-transition-group": "1.x",
     "react-truncate": "^2.1.5",

@@ -1,0 +1,6 @@
+#root .ant-layout-header {
+  background-color: #fff; }
+
+#root Header {
+  position: 'fixed';
+  width: '100%'; }

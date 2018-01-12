@@ -1,4 +1,4 @@
-# opt-showcase-ui
+# Loose-Diamond-Search
 
 This project uses -
 
@@ -20,12 +20,12 @@ This project uses -
 - react-redux-toastr
 - react-scroll
 - react-select
-- react-slick
 - react-sticky
 - react-transition-group
 - react-validation
 - validator
 - sweetalert
+- antd
 
 
 ## Roadmap
@@ -65,36 +65,32 @@ Project was bootstrapped with [Create React App](https://github.com/facebookincu
 Default configurations such as default headers, Root url added in file `src/utils/axios.js`
 
 ## Creating new Domain/Feature folder
-- Must contain booststrap file named `index.js` and css file '[feature].css' at root
+- Must contain antd file named `index.js` and css file '[feature].css' at root
 
 Example -
 
-- `src/login/index.js`
-- `src/login/login.css`
+- `src/catalog/index.js`
+- `src/catalog/catalog.css`
 
 ## Reducers for Domain/Feature
 
- - Create folder named `reducers` inside Feature folder like - `src/login/reducers`
+ - Create folder named `reducers` inside Feature folder like - `src/catalog/reducers`
 - Place `index.js` which combines all reducers using `combineReducers`
 
-## Epics for Domain/Feature
-
-- Create folder named `epics` inside feature/domain folder like - `src/login/epics`
-- Place `index.js` which combines all epics using `combineEpics`
 
 ## Styling
 
-we are using `scss` Preprocessor. Create a feature/domain specfic scss file, example - `src/login/login.scss`
+we are using `scss` Preprocessor. Create a feature/domain specfic scss file, example - `src/catalog/catalog.scss`
 
 After compilation the new corresponding CSS file next to it.
-example - `src/login/login.css`
+example - `src/catalog/catalog.css`
 
 Finally you can import that css file in `index.js` file
-example - `src/login/index.js` will import `src/login/login.css`
+example - `src/catalog/index.js` will import `src/catalog/catalog.css`
 
 #### global styling
 
-For global variables/mixins refer file `src/_shared.scss` which will be again imported inside your feature/domain specific `scss` file, example - `src/login/login.scss` will import `src/_shared.scss`
+For global variables/mixins refer file `src/_shared.scss` which will be again imported inside your feature/domain specific `scss` file, example - `src/catalog/catalog.scss` will import `src/_shared.scss`
 
 #### Reference
 

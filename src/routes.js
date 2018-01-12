@@ -2,14 +2,14 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 
 // components
-import Home from './home';
-import Login from './login';
-import NotFoundPage from './common/NotFoundPage';
+import Catalog from './catalog';
+import Product from './product';
+import NotFoundPage from './common/components/NotFoundPage';
 
 export default (
   <Switch>
-    <Route exact path="/" component={Home}/>
-    <Route exact path="/login" component={Login}/>
+    <Route exact path="/" component={Catalog}/>
+    <Route exact path="/product" component={Product}/>
     <Route path="*" component={NotFoundPage}/>
   </Switch>
 );

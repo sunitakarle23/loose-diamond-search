@@ -5,30 +5,28 @@ import { Provider } from 'react-redux';
 import 'rxjs';
 import { ConnectedRouter } from 'react-router-redux';
 import store, { history } from './store';
-// import './utils/validators';
-
-import './utils/ajaxConfigs';
-
-// import styles
-import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 import './styles/react-redux-toastr-7.1.min.css'
 import './index.css';
-
-
+import  'antd/dist/antd.css';
 // import common components
-import Header from './common/Header'
+import Catalog from './catalog'
+import LDSHeader from './common/containers/Header'
+
 
 // Routes
 import routes from './routes';
+import './index.css';
+import './common/common.css';
+
 
 ReactDOM.render(
 	<Provider store={store}>
     <ConnectedRouter history={history}>
       <div className="App">
-      	<Header />
-      	<div className="wrap">
-        	{routes}
+      	<LDSHeader />
+	      <div className="wrap">
+          <Catalog />
         </div>
       </div>
     </ConnectedRouter>

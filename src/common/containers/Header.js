@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
 
-class Header extends Component {
+import { Layout } from 'antd';
+const { Header } = Layout;
+
+class LDSHeader extends Component {
 
 	render () {
+
 	  return (
-	    <h1>Header</h1>
-	  )
+  	  <Header>
+		  	<div id="header" className="header">
+		  		<div className="logo">
+		  			<img class="lds-logo" src="https://cdn.optcentral.com/optportal/logos/2154/logo_lds_2154.png" />
+		  		</div>
+				</div>
+			</Header>
+	  );
 	}
 
 }
 
-export default Header;
+export default LDSHeader;
