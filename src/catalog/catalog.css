@@ -4,6 +4,8 @@
 #contentPart #productsListTbl thead tr th {
   background-color: #a4a4a4;
   color: #fff; }
+  #contentPart #productsListTbl thead tr th img {
+    float: left; }
 
 #contentPart #productsListTbl thead tr th.sort {
   cursor: pointer;

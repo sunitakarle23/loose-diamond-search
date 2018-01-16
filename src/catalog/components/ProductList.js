@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Table, Button, Label, Image } from 'react-bootstrap';
+import renderHTML from 'react-render-html';
 import Helpers from '../../utils/helpers';
+import Globals from '../../utils/global'
 
 class ProductList extends Component {
 
@@ -61,7 +63,8 @@ class ProductList extends Component {
 		const tableBody = this.props.products.map((val, key) => {
 			let compName = val.compInfo.name;
 			let properties = val.propertiesMap;
-			let color = Helpers.getColorProperty(val.properties2.details);
+			let price = Helpers.GET_PRODUCT_PRICE(val.retailPrice,val.wholesalePrice,true);
+			console.log("price",price);
 			if(!properties){
 				return;
 			}
@@ -74,17 +77,21 @@ class ProductList extends Component {
 	            <span className="shape-name">{ properties.lds_shape }</span>
 	          </div>
 	        </td>
-	  			<td> { properties.lds_weight } </td>
-	        <td>cc</td>
+	  			<td> { Helpers.decimalFractionFormat(properties.lds_weight) } </td>
+	        <td>{ Helpers.getColorProperty(val.properties2.details) }</td>
 	        <td> { properties.lds_display_value_clarity } </td>
 	        <td> { properties.lds_display_value_cut } </td>
-	        <td><span>{ properties.lds_measurements }</span></td>
-	        <td> { properties.lds_price_carat }</td>
-	        <td>
-	          <span> vbn</span>
+	        <td className={ properties.limited_data ? 'hide' : 'lds-limited-data-col'}>
+	        	{ properties.lds_measurements }
+	        </td>
+	        <td className={Globals.isPPCField ? 'lds-PPC-col' :'hide'}>
+	        	{ Helpers.getFormattedCurrency(properties.lds_price_carat) }
+	        </td>
+	        <td className={ properties.limited_data ? 'hide' : 'lds-limited-data-col'}>
+	          <span> { renderHTML(price) } </span>
 	        </td>
 	        <td>
-	          <div className="plp-actions-column LDS_ACTIONS_COL">
+	          <div className="plp-actions-column lds-action-col">
 							<Button className="btn-link"><strong>Inquire</strong></Button>
 							<Button className="btn-link"><strong>Email</strong></Button>
 							<Button className="btn-link"><strong>Print</strong></Button>
