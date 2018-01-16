@@ -1,14 +1,16 @@
 import React from 'react'
 import _ from 'lodash';
-import Globals from './global'
+import LDS from './global'
 
 
 // Price display options
 const CURRENCY_SEPERATOR = ','
 const CURRENCY = '$'
+
 const opt = {
-	lds: Globals.session
+	lds: LDS.session
 }
+
 const Helpers = {
 	getFormattedCurrency: function (number) {
 
@@ -16,7 +18,6 @@ const Helpers = {
 			return
 		}
     number = _.toString(number)
-
 		number = number.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' + CURRENCY_SEPERATOR);
 		number = `${CURRENCY}${number}`;
 		return number
@@ -54,6 +55,7 @@ const Helpers = {
 	    return value;
 	  }
 	},
+
 	GET_PRODUCT_PRICE: function(RETAIL_PRICE, WHOLESALE_PRICE, echoLabel) {
 
     //Return Call for pricing
@@ -145,6 +147,43 @@ const Helpers = {
 
     return t;
   },
+
+
+
+  parseProducts: function(response) {
+
+  },
+
+  hasEmailRole: function(options) {
+	  if (_.contains(opt.lds.session.user.roles, 'ROLE_EMAIL')) {
+	    return true;
+	  } else {
+	  	return false;
+	  }
+	},
+
+	hasPrintRole: function(options) {
+
+	  if (_.contains(opt.lds.session.user.roles, 'ROLE_PRINT')) {
+	    return true;
+	  } else {
+	  	return false;
+	  }
+	},
+	hasBasketShown: function() {
+	  if (_.isUndefined(opt.lds.session)) {
+	    return;
+	  }
+
+	  if (opt.lds.session.user.company.type == '3') {
+	    return true;
+	  } else if (opt.lds.session.user.company.basket == 'yes') {
+	    return true;
+	  } else {
+	    return false;
+	  }
+	},
+
 }
 
 export default Helpers;

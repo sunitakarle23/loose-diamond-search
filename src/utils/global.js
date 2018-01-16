@@ -1,6 +1,8 @@
 import React from 'react';
+import Helpers from './helpers';
+import _ from 'lodash';
 
-const Globals = {
+const LDS = {
 	session: {
 		priceNoPos: "wholesale",
 		pricePos: "retail",
@@ -35,10 +37,32 @@ const Globals = {
 		}else{
 			 return false;
 		}
-	}
+	},
 
+	PARSE_PRODUCT_PRICE: function(hash) {
+    var r = {
+      retailPrice: null,
+      wholesalePrice: null
+    };
+
+    if (_.isNull(hash.retailPrice) && _.isNull(hash.wChipher)) {
+      //Return as is
+      return r;
+    }
+
+    if (hash.retailPrice) {
+      r.retailPrice = Helpers.getFormattedCurrency(hash.retailPrice);
+    }
+
+    if (hash.wChipher) {
+      var d = Number(atob(hash.wChipher));
+      r.wholesalePrice = Helpers.getFormattedCurrency(d);
+    }
+
+    return r;
+  },
 
 
 }
 
-export default Globals;
+export default LDS;

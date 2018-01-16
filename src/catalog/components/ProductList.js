@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { Table, Button, Label, Image } from 'react-bootstrap';
 import renderHTML from 'react-render-html';
 import Helpers from '../../utils/helpers';
-import Globals from '../../utils/global'
+import LDS from '../../utils/global';
 
 class ProductList extends Component {
 
 	render() {
+		const isAffiliated = ('AFFILIATED_ONLY' == LDS.session.catalogProductCompany) ? true : false;
+
 		const propHeader = (prop) => {
 			let propName = prop;
 			return(
@@ -24,10 +26,11 @@ class ProductList extends Component {
 		   </div>
 			)
 		}
+
 		const tableHeader = (
 			<thead>
 				<tr>
-    			<th className="sort"  data-prop="manufacturer">
+    			<th className={ isAffiliated ? 'sort' :'hide'} data-prop="manufacturer">
     				{propHeader('Manufacturer')}
     			</th>
           <th className="sort" data-prop="shape">
@@ -60,47 +63,54 @@ class ProductList extends Component {
 				</tr>
 			</thead>
 		);
+
 		const tableBody = this.props.products.map((val, key) => {
 			let compName = val.compInfo.name;
 			let properties = val.propertiesMap;
-			let price = Helpers.GET_PRODUCT_PRICE(val.retailPrice,val.wholesalePrice,true);
-			console.log("price",price);
+			let price = Helpers.GET_PRODUCT_PRICE(val.retailPrice, val.wholesalePrice, true);
+
 			if(!properties){
 				return;
 			}
 
 	    return (
 	    	<tr key={key}>
-					<td> {compName} </td>
+					<td className={ isAffiliated ? 'sort' :'hide'} > {compName} </td>
 	        <td className="LDS_SHAPE_COL">
 	          <div className="hide-mobile">
 	            <span className="shape-name">{ properties.lds_shape }</span>
 	          </div>
 	        </td>
 	  			<td> { Helpers.decimalFractionFormat(properties.lds_weight) } </td>
-	        <td>{ Helpers.getColorProperty(val.properties2.details) }</td>
+	        <td> { Helpers.getColorProperty(val.properties2.details) } </td>
 	        <td> { properties.lds_display_value_clarity } </td>
 	        <td> { properties.lds_display_value_cut } </td>
 	        <td className={ properties.limited_data ? 'hide' : 'lds-limited-data-col'}>
 	        	{ properties.lds_measurements }
 	        </td>
-	        <td className={Globals.isPPCField ? 'lds-PPC-col' :'hide'}>
+	        <td className={ LDS.isPPCField ? 'lds-PPC-col' :'hide'} >
 	        	{ Helpers.getFormattedCurrency(properties.lds_price_carat) }
 	        </td>
 	        <td className={ properties.limited_data ? 'hide' : 'lds-limited-data-col'}>
 	          <span> { renderHTML(price) } </span>
 	        </td>
-	        <td>
+	        <td className={ properties.limited_data ? 'hide' : 'lds-limited-data-col'}>
 	          <div className="plp-actions-column lds-action-col">
-							<Button className="btn-link"><strong>Inquire</strong></Button>
-							<Button className="btn-link"><strong>Email</strong></Button>
-							<Button className="btn-link"><strong>Print</strong></Button>
-							<Button className="btn-link">
-							  <strong>Basket</strong>
+							<Button className="btn-link inquire-btn">
+								Inquire
+							</Button>
+							<Button className={ Helpers.hasEmailRole ? 'btn-link email-btn' : 'hide'}>
+								Email
+							</Button>
+							<Button className={ Helpers.hasPrintRole ? 'btn-link print-btn' : 'hide'}>
+								Print
+							</Button>
+							<Button  className={ Helpers.hasBasketShown ? 'btn-link add-to-basket' : 'hide'} >
+							  Basket
 							</Button>
 							<Label className="hide">
-								<span >
-								  <strong>Added to Basket</strong>
+								<span>
+								  Added to Basket
 								</span>
 							</Label>
 	          </div>

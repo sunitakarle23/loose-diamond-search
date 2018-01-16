@@ -32,7 +32,8 @@
   display: inline-block; }
 
 #contentPart #productsListTbl .plp-actions-column .btn-link {
-  display: block; }
+  display: block;
+  font-weight: bold !important; }
 
 #contentPart #productPagination {
   float: right; }
