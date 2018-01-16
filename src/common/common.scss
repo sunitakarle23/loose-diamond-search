@@ -1,10 +1,16 @@
 #root{
-	.ant-layout-header{
-		background-color: #fff;
+	#header{
+		.btn-toolbar{
+			margin: 15px;
+			.addCompleteList-basket{
+				margin-right: 62px;
+				display: none;
+			}
+		}
 	}
-	Header{
-		position: 'fixed';
-		width: '100%';
+	.wrap{
+		margin-top: 15px;
+		margin-bottom: 15px;
 	}
 }
 

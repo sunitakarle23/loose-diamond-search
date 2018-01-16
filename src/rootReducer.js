@@ -1,12 +1,11 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
+import catalogReducer from './catalog/reducers';
 
-// Import `reducers` from all modules
-// and combine them
-// import loginReducer from './login/reducers/applyLogin';
+// Import `reducers` from all modules and combine them
 
 const rootReducer = combineReducers({
-	// login: loginReducer,
+	catalogReducer,
 	router: routerReducer
 });
 

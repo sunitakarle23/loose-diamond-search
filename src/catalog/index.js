@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
 import Sidebar from '../common/containers/Sidebar';
 import Products from './containers/Products';
-import { Row, Col } from 'antd';
+import { Grid, Row, Col } from 'react-bootstrap';
 import './catalog.css';
 
 class Catalog extends Component {
+  componentDidMount() {
+
+  }
 
 	render () {
 	  return (
   	  <div>
-  		  <Col lg={8} xl={8}>
-          <Sidebar />
-        </Col>
-        <Col  xs={24} lg={16} xl={16}>
-        	<Products />
-        </Col>
+         <Grid id="catalog-container">
+          <Row>
+            <Col xs={12} md={3}>
+              <Sidebar {...this.props}/>
+            </Col>
+            <Col xs={12} md={9}>
+              <Products />
+            </Col>
+          </Row>
+        </Grid>
   		</div>
 	  );
 	}
 
 }
+
+
 
 export default Catalog;

@@ -8,7 +8,7 @@ import store, { history } from './store';
 import 'font-awesome/css/font-awesome.css';
 import './styles/react-redux-toastr-7.1.min.css'
 import './index.css';
-import  'antd/dist/antd.css';
+import './styles/namespaced-bootstrap-v3.3.7.css';
 // import common components
 import Catalog from './catalog'
 import LDSHeader from './common/containers/Header'

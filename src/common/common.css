@@ -1,6 +1,9 @@
-#root .ant-layout-header {
-  background-color: #fff; }
+#root #header .btn-toolbar {
+  margin: 15px; }
+  #root #header .btn-toolbar .addCompleteList-basket {
+    margin-right: 62px;
+    display: none; }
 
-#root Header {
-  position: 'fixed';
-  width: '100%'; }
+#root .wrap {
+  margin-top: 15px;
+  margin-bottom: 15px; }

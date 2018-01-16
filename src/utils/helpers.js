@@ -9,6 +9,10 @@ const Helpers = {
 				result[current] = Obj[current];
 				return result;
 			}, {});
+	},
+
+	getColorProperty: function(propObj){
+
 	}
 
 }
