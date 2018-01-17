@@ -16,7 +16,7 @@ class ShapeList extends Component {
     }
 
     let shapes = _.find(ldsProps, function(prop) {
-      return prop.name == 'shape';
+      return prop.name === 'shape';
     });
 
     const shapelist = Object.keys(shapes).map((shape, i) => {

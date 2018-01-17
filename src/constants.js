@@ -62,7 +62,6 @@ let getSession = () => {
 	    "id": "",
 	    "name": ""
 	  },
-	  "purpose": "POS",
 	  "iPad": "false",
 	  "iPhone": "false",
 	  "isIE9": false,

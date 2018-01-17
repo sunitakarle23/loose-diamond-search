@@ -7,7 +7,7 @@ import {
 	doCancelFetchLDSprops
 } from '../actions/doFetchLDSprops';
 
-class Sidebar extends Component {
+class FiltersList extends Component {
 
 	constructor (props) {
 		super(props);
@@ -27,10 +27,7 @@ class Sidebar extends Component {
     }
 
 	  return (
-  	 	<div>
-  	 		<h2>Sidebar</h2>
-  	 		{shapelistComponent}
-  	 	</div>
+	 		{shapelistComponent}
 	  );
 	}
 
@@ -59,5 +56,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default connect(mapStateToProps, mapDispatchToProps)(FiltersList);
 

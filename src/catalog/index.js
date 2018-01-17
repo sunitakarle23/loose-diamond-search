@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Sidebar from '../sidebar/containers/Sidebar';
+import Sidebar from '../sidebar';
 import Products from './containers/Products';
 import { Grid, Row, Col } from 'react-bootstrap';
 import './catalog.css';
