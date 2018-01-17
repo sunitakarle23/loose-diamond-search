@@ -23,7 +23,9 @@ class FiltersList extends Component {
     }
 
 	  return (
-	 		{shapelistComponent}
+			<div>
+				{shapelistComponent}
+			</div>
 	  );
 	}
 
