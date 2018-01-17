@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Sidebar from '../common/containers/Sidebar';
+import Sidebar from '../sidebar/containers/Sidebar';
 import Products from './containers/Products';
 import { Grid, Row, Col } from 'react-bootstrap';
 import './catalog.css';
@@ -16,7 +16,7 @@ class Catalog extends Component {
          <Grid id="catalog-container">
           <Row>
             <Col xs={12} md={3}>
-              <Sidebar {...this.props}/>
+              <Sidebar />
             </Col>
             <Col xs={12} md={9}>
 
