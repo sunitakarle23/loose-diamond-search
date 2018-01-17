@@ -1,15 +1,10 @@
-import React from 'react'
 import _ from 'lodash';
-import LDS from './global'
+import { SESSION } from '../constants'
 
 
 // Price display options
 const CURRENCY_SEPERATOR = ','
-const CURRENCY = '$'
-
-const opt = {
-	lds: LDS.session
-}
+const CURRENCY = '$';
 
 const Helpers = {
 	getFormattedCurrency: function (number) {
@@ -108,11 +103,11 @@ const Helpers = {
 
     var t = 0,
       cMap = echoLabel ? lMap : pMap;
-    switch (opt.lds.purpose) {
+    switch (SESSION.purpose) {
       case 'POS':
         //If company configuration/setting present
-        if (!_.isNull(opt.lds.pricePos) && opt.lds.pricePos) {
-          t = cMap[opt.lds.pricePos];
+        if (!_.isNull(SESSION.pricePos) && SESSION.pricePos) {
+          t = cMap[SESSION.pricePos];
         } else {
           //else as per requirment - show retail price
           t = cMap['retail'];
@@ -121,9 +116,9 @@ const Helpers = {
         break;
       default:
         //If company configuration/setting present
-        if (!_.isNull(opt.lds.priceNoPos) && opt.lds.priceNoPos) {
+        if (!_.isNull(SESSION.priceNoPos) && SESSION.priceNoPos) {
 
-          t = cMap[opt.lds.priceNoPos];
+          t = cMap[SESSION.priceNoPos];
         } else {
           //else as per requirment - show retail price
 
@@ -155,7 +150,7 @@ const Helpers = {
   },
 
   hasEmailRole: function(options) {
-	  if (_.contains(opt.lds.session.user.roles, 'ROLE_EMAIL')) {
+	  if (_.contains(SESSION.user.roles, 'ROLE_EMAIL')) {
 	    return true;
 	  } else {
 	  	return false;
@@ -164,20 +159,21 @@ const Helpers = {
 
 	hasPrintRole: function(options) {
 
-	  if (_.contains(opt.lds.session.user.roles, 'ROLE_PRINT')) {
+	  if (_.contains(SESSION.user.roles, 'ROLE_PRINT')) {
 	    return true;
 	  } else {
 	  	return false;
 	  }
 	},
+
 	hasBasketShown: function() {
-	  if (_.isUndefined(opt.lds.session)) {
+	  if (_.isUndefined(SESSION.session)) {
 	    return;
 	  }
 
-	  if (opt.lds.session.user.company.type == '3') {
+	  if (SESSION.session.user.company.type === '3') {
 	    return true;
-	  } else if (opt.lds.session.user.company.basket == 'yes') {
+	  } else if (SESSION.session.user.company.basket === 'yes') {
 	    return true;
 	  } else {
 	    return false;

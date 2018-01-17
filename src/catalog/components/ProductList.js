@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { Table, Button, Label, Image } from 'react-bootstrap';
+import { Table, Button, Label, Image} from 'react-bootstrap';
 import renderHTML from 'react-render-html';
 import Helpers from '../../utils/helpers';
 import LDS from '../../utils/global';
+import { SESSION } from '../../constants';
+import { Link } from 'react-router-dom';
 
 class ProductList extends Component {
 
 	render() {
-		const isAffiliated = ('AFFILIATED_ONLY' == LDS.session.catalogProductCompany) ? true : false;
+		const isAffiliated = ('AFFILIATED_ONLY' === SESSION.catalogProductCompany) ? true : false;
 
 		const propHeader = (prop) => {
 			let propName = prop;
@@ -64,35 +66,65 @@ class ProductList extends Component {
 			</thead>
 		);
 
-		const tableBody = this.props.products.map((val, key) => {
-			let compName = val.compInfo.name;
-			let properties = val.propertiesMap;
-			let price = Helpers.GET_PRODUCT_PRICE(val.retailPrice, val.wholesalePrice, true);
+		const tableBody = this.props.products.map((product, key) => {
+			let compName = product.compInfo.name;
+			let properties = product.propertiesMap;
+			let price = Helpers.GET_PRODUCT_PRICE(product.retailPrice, product.wholesalePrice, true);
 
 			if(!properties){
 				return;
 			}
 
 	    return (
-	    	<tr key={key}>
-					<td className={ isAffiliated ? 'sort' :'hide'} > {compName} </td>
-	        <td className="LDS_SHAPE_COL">
+
+	    	<tr key={product.id}>
+
+					<td className={ isAffiliated ? 'sort' :'hide'} >
+						<Link to={`/product/${product.id}`} className="product-link">
+							{compName}
+						</Link>
+					</td>
+			    <td className="LDS_SHAPE_COL">
+			    	<Link to={`/product/${product.id}`} className="product-link">
 	          <div className="hide-mobile">
 	            <span className="shape-name">{ properties.lds_shape }</span>
 	          </div>
+						</Link>
 	        </td>
-	  			<td> { Helpers.decimalFractionFormat(properties.lds_weight) } </td>
-	        <td> { Helpers.getColorProperty(val.properties2.details) } </td>
-	        <td> { properties.lds_display_value_clarity } </td>
-	        <td> { properties.lds_display_value_cut } </td>
+	  			<td>
+			    	<Link to={`/product/${product.id}`} className="product-link">
+			    		{ Helpers.decimalFractionFormat(properties.lds_weight) }
+			    	</Link>
+			     </td>
+	        <td>
+	        	<Link to={`/product/${product.id}`} className="product-link">
+	        		{ Helpers.getColorProperty(product.properties2.details) }
+	        	</Link>
+	        </td>
+	        <td>
+	        	<Link to={`/product/${product.id}`} className="product-link">
+	        		{ properties.lds_display_value_clarity }
+	        	</Link>
+	        </td>
+	        <td>
+	        	<Link to={`/product/${product.id}`} className="product-link">
+	        		{ properties.lds_display_value_cut }
+	        	</Link>
+	        </td>
 	        <td className={ properties.limited_data ? 'hide' : 'lds-limited-data-col'}>
-	        	{ properties.lds_measurements }
+	        	<Link to={`/product/${product.id}`} className="product-link">
+	        		{ properties.lds_measurements }
+	        	</Link>
 	        </td>
 	        <td className={ LDS.isPPCField ? 'lds-PPC-col' :'hide'} >
-	        	{ Helpers.getFormattedCurrency(properties.lds_price_carat) }
+	        	<Link to={`/product/${product.id}`} className="product-link">
+	        		{ Helpers.getFormattedCurrency(properties.lds_price_carat) }
+	        	</Link>
 	        </td>
 	        <td className={ properties.limited_data ? 'hide' : 'lds-limited-data-col'}>
-	          <span> { renderHTML(price) } </span>
+	         	<Link to={`/product/${product.id}`} className="product-link">
+	         		<span> { renderHTML(price) } </span>
+	         	</Link>
 	        </td>
 	        <td className={ properties.limited_data ? 'hide' : 'lds-limited-data-col'}>
 	          <div className="plp-actions-column lds-action-col">
@@ -116,6 +148,8 @@ class ProductList extends Component {
 	          </div>
 	        </td>
 	  		</tr>
+
+
   		)
 		});
 

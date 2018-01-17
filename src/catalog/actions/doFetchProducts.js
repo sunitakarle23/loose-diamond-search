@@ -1,6 +1,7 @@
 //action creator
 import axios from 'axios';
-import Helpers from '../../utils/helpers';
+import { API_ROOT_URL } from '../../constants';
+//import Helpers from '../../utils/helpers';
 import $ from 'jquery';
 
 import {
@@ -21,7 +22,7 @@ const params = {
   sortBy: 'wholesale;desc'
 }
 
-const ROOT_URL = 'https://www.optcentral.com/optportal/services/brand/diamondsearch.json?' + $.param(params);
+const ROOT_URL = `${API_ROOT_URL}/optportal/services/brand/diamondsearch.json?` + $.param(params);
 
 export function doFetchProducts() {
   const request = axios({

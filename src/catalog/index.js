@@ -10,6 +10,7 @@ class Catalog extends Component {
   }
 
 	render () {
+    console.log(this.props);
 	  return (
   	  <div>
          <Grid id="catalog-container">
@@ -18,6 +19,7 @@ class Catalog extends Component {
               <Sidebar {...this.props}/>
             </Col>
             <Col xs={12} md={9}>
+
               <Products />
             </Col>
           </Row>

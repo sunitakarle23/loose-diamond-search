@@ -1,6 +1,11 @@
 #contentPart .results-para {
   text-align: center; }
 
+#contentPart #productsListTbl a {
+  color: #000; }
+  #contentPart #productsListTbl a:hover {
+    text-decoration: none; }
+
 #contentPart #productsListTbl thead tr th {
   background-color: #a4a4a4;
   color: #fff; }

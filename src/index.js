@@ -15,7 +15,7 @@ import LDSHeader from './common/containers/Header'
 
 
 // Routes
-import routes from './routes';
+//import routes from './routes';
 import './index.css';
 import './common/common.css';
 

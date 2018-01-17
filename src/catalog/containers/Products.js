@@ -16,18 +16,20 @@ class Products extends Component {
 	}
 
 	render () {
+		const totalProducts = this.props.totalProductCount;
+		const totalPages = Math.ceil(totalProducts / 24);
 	  return (
   	  <div>
 	  	  <div id="contentPart">
 					<Row className="results-area">
 				    <Col xs={12}>
 				      <p className="results-para">
-				        <strong>Results: </strong>{this.props.totalProductCount} diamond(s)
+				        <strong>Results: </strong>{totalProducts} diamond(s)
 				      </p>
 				    </Col>
 			    </Row>
 	        <ProductList products = {this.props.productsList.products} />
-	        <ProductPagination />
+	        <ProductPagination pages= {totalPages} />
 				</div>
   		</div>
 	  );

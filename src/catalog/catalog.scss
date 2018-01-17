@@ -4,6 +4,12 @@
 	}
 
 	#productsListTbl{
+		a{
+			color: #000;
+			&:hover{
+				text-decoration: none;
+			}
+		}
  		thead{
 	 		tr {
 		 		th{
