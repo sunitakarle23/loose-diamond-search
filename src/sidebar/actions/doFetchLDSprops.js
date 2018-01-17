@@ -10,7 +10,6 @@ import {
 
 const ROOT_URL = 'https://raw.githubusercontent.com/sanketj14/Backbone-crud-app/master/getldspropertytypes.json';
 
-
 const params = {
   login: SESSION.user.login,
   lds: true,
