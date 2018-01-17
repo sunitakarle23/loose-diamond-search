@@ -16,12 +16,12 @@ export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
 
     case FETCH_PROPS_REQUEST:// start fetching products and set loading = true
-      
+
       return Object.assign({}, state, {
         ldsProps: [],
         loading: true
       });
-    
+
 
     case FETCH_PROPS_SUCCESS: // return list of products and make loading = false
 
@@ -29,7 +29,7 @@ export default function(state = INITIAL_STATE, action) {
         ldsProps: action.payload.data.hashMap,
         loading: false,
         error: null,
-      }); 
+      });
 
     case FETCH_PROPS_FAILURE:// return error and make loading = false
 
@@ -38,7 +38,7 @@ export default function(state = INITIAL_STATE, action) {
         ldsProps: [],
         loading: false,
         error: error,
-      }); 
+      });
 
     default:
       return state;

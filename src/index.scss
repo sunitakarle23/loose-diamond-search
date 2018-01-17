@@ -15,4 +15,8 @@ $border-color: #ccc;
 	box-shadow: none;
 	pointer-events: none;
 }
-
+.hide-mobile{
+	@media(max-width: 767) {
+		display: none;
+	}
+}

@@ -1,7 +1,7 @@
 //action creator
 import axios from 'axios';
 import queryString from 'query-string';
-import GLOBALS from '../../utils/global';
+import { SESSION } from '../../constants';
 import {
 	FETCH_PROPS_REQUEST,
 	FETCH_PROPS_SUCCESS,
@@ -10,14 +10,13 @@ import {
 
 const ROOT_URL = 'https://raw.githubusercontent.com/sanketj14/Backbone-crud-app/master/getldspropertytypes.json';
 
-const { session } = GLOBALS;
 
 const params = {
-  login: session.users.login,
+  login: SESSION.user.login,
   lds: true,
-  company: session.users.companyId,
+  company: SESSION.user.companyId,
   lds_type: 'standard',
-  purpose: session.purpose
+  purpose: SESSION.purpose
 }
 
 const queryParams = queryString.stringify(params);
@@ -35,6 +34,7 @@ export function doFetchLDSprops() {
 }
 
 export function doSuccessFetchLDSprops(ldsProps) {
+  console.log("ldsProps", ldsProps)
   return {
     type: FETCH_PROPS_SUCCESS,
     payload: ldsProps

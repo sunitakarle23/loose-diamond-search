@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { API_ROOT_URL } from '../../constants';
 //import Helpers from '../../utils/helpers';
-import $ from 'jquery';
+import queryString from 'query-string';
 
 import {
 	FETCH_PRODUCTS_REQUEST,
@@ -22,7 +22,8 @@ const params = {
   sortBy: 'wholesale;desc'
 }
 
-const ROOT_URL = `${API_ROOT_URL}/optportal/services/brand/diamondsearch.json?` + $.param(params);
+const queryParams = queryString.stringify(params);
+const ROOT_URL = `${API_ROOT_URL}/optportal/services/brand/diamondsearch.json?` + queryParams;
 
 export function doFetchProducts() {
   const request = axios({

@@ -5,3 +5,7 @@
   -webkit-box-shadow: none;
   box-shadow: none;
   pointer-events: none; }
+
+@media (max-width: 767) {
+  .hide-mobile {
+    display: none; } }

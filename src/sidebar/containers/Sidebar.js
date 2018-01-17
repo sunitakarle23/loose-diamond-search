@@ -18,15 +18,18 @@ class Sidebar extends Component {
 	}
 
 	render () {
-		console.log('sidebar reducer in ===>', this.props);
-		if(!this.props.response.ldsProps) {
-      return <div>loading..</div>
+
+		let shapelistComponent;
+    if(this.props.response.ldsProps) {
+      shapelistComponent = <ShapeList shapes={this.props.response.ldsProps.proptypes} />
+    } else {
+      shapelistComponent = null
     }
 
 	  return (
   	 	<div>
   	 		<h2>Sidebar</h2>
-				 <ShapeList shapes = {this.props.response.ldsProps.propTypes}/>
+  	 		{shapelistComponent}
   	 	</div>
 	  );
 	}
