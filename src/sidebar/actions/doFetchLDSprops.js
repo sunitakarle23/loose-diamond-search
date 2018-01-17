@@ -18,8 +18,6 @@ const params = {
   purpose: SESSION.purpose
 }
 
-const queryParams = queryString.stringify(params);
-
 export function doFetchLDSprops() {
   const request = axios({
     method: 'get',

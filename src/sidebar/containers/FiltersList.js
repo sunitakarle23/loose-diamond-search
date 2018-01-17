@@ -9,10 +9,6 @@ import {
 
 class FiltersList extends Component {
 
-	constructor (props) {
-		super(props);
-	}
-
 	componentDidMount (){
 		this.props.getLDSprops();
 	}

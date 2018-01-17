@@ -2,6 +2,7 @@ import Helpers from './helpers';
 import _ from 'lodash';
 
 const LDS = {
+  
 	isPPCField: function(){
 		if(this.session.purpose === 'browsing'){
 			return true
