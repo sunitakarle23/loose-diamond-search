@@ -19,7 +19,7 @@ class LDSHeader extends Component {
 
 	  return (
 	  	<div id="header" className="header hidden-xs hidden-sm">
-				<div className="container">
+				<div className="container-fluid">
 		  		<div className="logo">
 		  			<Image className="lds-logo"  alt='brand logo' src="https://cdn.optcentral.com/optportal/logos/2154/logo_lds_2154.png" />
 		  		</div>
