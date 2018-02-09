@@ -16,11 +16,13 @@ class Catalog extends Component {
          <Grid fluid id="catalog-container">
           <Row>
             <Col xs={12} md={3}>
-              <div id="sidebar" className="sidebar">
-                <div className="search-header">
-                  Search by The Following Criteria
+              <div className="sidebar-wrapper">  
+                <div id="sidebar" className="sidebar">
+                  <div className="search-header">
+                    Search by The Following Criteria
+                  </div>
+                  <FiltersList />
                 </div>
-                <FiltersList />
               </div>
             </Col>
             <Col xs={12} md={9}>
