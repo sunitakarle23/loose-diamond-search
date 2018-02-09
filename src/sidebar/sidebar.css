@@ -5,3 +5,6 @@
   font-size: 14px;
   padding: 10px 15px;
   margin: 0; }
+
+#sidebar #collapse-diamond-shapes div {
+  display: inline-block; }

@@ -14,6 +14,7 @@ let getSession = () => {
 		"pricePos": "retail",
 		"purpose": "browsing",
 		"catalogProductCompany": "AFFILIATED_ONLY",
+		"iosApp" : false,
 	  "user": {
 	    "login": "forevermark_super",
 	    "email": "vasi@optcentral.com",
@@ -62,11 +63,8 @@ let getSession = () => {
 	    "id": "",
 	    "name": ""
 	  },
-	  "iPad": "false",
-	  "iPhone": "false",
-	  "isIE9": false,
-	  "NewOrderFlow": "&oldOrder=false",
-	  "ldsCompany": null
+	  "ldsCompany": 2154,
+	  "categoryId": 1965,
 	};
 }
 
@@ -124,13 +122,13 @@ let getMappedNameProps = () => {
 			image: 'Princess.png',
 			associated: ['PR', 'PRI', 'PRINCESS', 'BL SQUARE', 'CUT CORNER PRINCESS', 'IDEAL SQUARE', 'SQ', 'ISQ', 'FI', 'PC']
 		},
-	
+
 		// https://basecamp.com/2368312/projects/7688643/todos/324092466#comment_560396372
 		// Support added to show associated codes name and his own image
 		// if name/image mapping for associated code is present
 		// then it will pick up respective name/image
 		// otherwise `DEFAULT` is used
-	
+
 		{
 			code: 'AC',
 			name: {

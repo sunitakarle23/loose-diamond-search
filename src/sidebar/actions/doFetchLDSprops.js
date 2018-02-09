@@ -8,7 +8,7 @@ import {
 	FETCH_PROPS_FAILURE,
 } from './actionTypes';
 
-const ROOT_URL = 'https://raw.githubusercontent.com/sanketj14/Backbone-crud-app/master/getldspropertytypes.json';
+const ROOT_URL = 'https://api.flockler.com/v1/sites/609/authors';
 
 const params = {
   login: SESSION.user.login,
