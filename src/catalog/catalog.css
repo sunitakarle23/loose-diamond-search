@@ -1,13 +1,14 @@
-#sidebar .search-header {
-  background: #a4a4a4;
-  color: #fff;
-  text-align: center;
-  font-size: 14px;
-  padding: 10px 15px;
-  margin: 0; }
-
-#sidebar #collapse-diamond-shapes div {
-  display: inline-block; }
+.sidebar-wrapper {
+  border: 1px solid lightgray; }
+  .sidebar-wrapper #sidebar .search-header {
+    background: #a4a4a4;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px 15px;
+    margin: 0; }
+  .sidebar-wrapper #sidebar #collapse-diamond-shapes div {
+    display: inline-block; }
 
 #contentPart .results-para {
   text-align: center; }

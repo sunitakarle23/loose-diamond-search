@@ -5,23 +5,25 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import './catalog.css';
 
 class Catalog extends Component {
-  componentDidMount() {
-
+  constructor(props) {
+    super(props);
   }
 
 	render () {
-    console.log(this.props);
+    let { ldsProps } = this.props;
+    if( !ldsProps ) return null;
+
 	  return (
   	  <div>
          <Grid fluid id="catalog-container">
           <Row>
             <Col xs={12} md={3}>
-              <div className="sidebar-wrapper">  
+              <div className="sidebar-wrapper">
                 <div id="sidebar" className="sidebar">
                   <div className="search-header">
                     Search by The Following Criteria
                   </div>
-                  <FiltersList />
+                  <FiltersList properties={ldsProps} />
                 </div>
               </div>
             </Col>

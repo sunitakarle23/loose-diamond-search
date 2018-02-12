@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import applyFetchProductsReducer from './applyFetchProductsReducer';
-import applyFetchLDSPropsReducer from './applyFetchLDSPropsReducer';
+import applyLdsPropsReducer from './applyLdsPropsReducer';
 
 const catalogReducer = combineReducers({
+	applyLdsPropsReducer,
 	products : applyFetchProductsReducer,
-	ldsProps : applyFetchLDSPropsReducer
 });
 
 export default catalogReducer;

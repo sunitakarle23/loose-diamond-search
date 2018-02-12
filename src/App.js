@@ -9,42 +9,18 @@ import LDSHeader from './common/containers/Header'
 import { API_ROOT_URL } from './constants'
 
 import {
-	doGetLdsProperties
-} from './common/actions/doGetLdsProperties'
+	doLdsProperties
+} from './catalog/actions/doLdsProperties'
 
 let LDS = {}
 class App extends Component {
-	getLDSConfigs() {
-		if (!LDS) return;
-		let lds = LDS.session;
-		let params = {
-      login: lds.user.login,
-      lds: true,
-      company: lds.user.companyId,
-      lds_type: 'standard',
-      purpose: lds.purpose
-    }
-
-    let q = queryString.stringify(params, {
-			arrayFormat: 'index'
-		});
-
-		//let url = `${API_ROOT_URL}/optportal/services/brand/getldsPropertytypes.json?${q}`;
-
-		//to avoid allow access origin  use diff url to access data temprary
-			let url = `https://raw.githubusercontent.com/sanketj14/Backbone-crud-app/master/getldspropertytypes.json?${q}`
-
-		//fetch lds properties
-
-		axios.get(url)
-	  .then(function (response) {
-	    this.props.doGetLdsProperties(response.hashMap)
-	  })
-	  .catch(function (error) {
-	    console.log(error);
-	  });
-
+	constructor(props) {
+		super(props);
+		this.state = {
+      loading: false,
+    };
 	}
+
 	bootstrapLdsApp () {
 		if (!LDS) return;
 		let { companyId } = LDS.session;
@@ -78,14 +54,54 @@ class App extends Component {
 	componentDidMount() {
 		this.setDefaultLdsApp(SESSION);
 		console.log("@@@ default options=>", LDS);
-		this.getLDSConfigs();
+
+		if (!LDS) return;
+
+		this.setState({
+      loading: true
+    });
+
+		let lds = LDS.session;
+		let params = {
+      login: lds.user.login,
+      lds: true,
+      company: lds.user.companyId,
+      lds_type: 'standard',
+      purpose: lds.purpose
+    }
+
+    let q = queryString.stringify(params, {
+			arrayFormat: 'index'
+		});
+
+		//let queryURL = `${API_ROOT_URL}/optportal/services/brand/getldsPropertytypes.json?${q}`;
+
+		//to avoid allow access origin  use diff url to access data temparary
+			let queryURL = `https://raw.githubusercontent.com/sanketj14/Backbone-crud-app/master/getldspropertytypes.json?${q}`
+
+		//fetch lds properties
+		axios.get(queryURL)
+    .then((res) => {
+      this.setState({
+	      loading: false
+	    });
+     	this.props.fetchProps(res.data.hashMap);
+    })
+    .catch(function (error) {
+      console.log(error)
+    });
+
 	}
+
+
+
 	render() {
+		console.log(this.props)
 		return (
 			<div className="App">
       	<LDSHeader />
 	      <div className="wrap">
-          <Catalog properties={ this.props.properties } />
+          <Catalog ldsProps={this.props} />
         </div>
       </div>
 		)
@@ -94,14 +110,14 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-  	properties: state.commonReducer.applyLdsProperties
+    ldsProps: state.catalogReducer.applyLdsPropsReducer
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getLdsProps: (res) => {
-    	dispatch(doGetLdsProperties(res))
+    fetchProps: (res) => {
+    	dispatch(doLdsProperties(res))
     }
   }
 }
