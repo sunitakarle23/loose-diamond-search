@@ -8,7 +8,6 @@ import {
 	FETCH_PRODUCTS_FAILURE,
 } from './actionTypes';
 
-
 export function doSuccessFetchProducts(products) {
   return {
     type: FETCH_PRODUCTS_SUCCESS,

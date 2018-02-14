@@ -149,37 +149,6 @@ const Helpers = {
 
   },
 
-  hasEmailRole: function(options) {
-	  if (_.contains(SESSION.user.roles, 'ROLE_EMAIL')) {
-	    return true;
-	  } else {
-	  	return false;
-	  }
-	},
-
-	hasPrintRole: function(options) {
-
-	  if (_.contains(SESSION.user.roles, 'ROLE_PRINT')) {
-	    return true;
-	  } else {
-	  	return false;
-	  }
-	},
-
-	hasBasketShown: function() {
-	  if (_.isUndefined(SESSION.session)) {
-	    return;
-	  }
-
-	  if (SESSION.session.user.company.type === '3') {
-	    return true;
-	  } else if (SESSION.session.user.company.basket === 'yes') {
-	    return true;
-	  } else {
-	    return false;
-	  }
-	},
-
 }
 
 export default Helpers;

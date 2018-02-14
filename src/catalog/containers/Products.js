@@ -17,6 +17,7 @@ class Products extends Component {
 
 	render () {
 		let { loading } = this.props;
+    console.log("loading", loading);
     let content = '';
     if (loading) {
       content = (

@@ -4,14 +4,14 @@ import {
   FETCH_PRODUCTS_FAILURE
 } from '../actions/actionTypes';
 
-const INITIAL_STATE = {
+const defaultSate = {
   products: [],
-  loading: false,
+  loading: true,
   totalProductCount: 0,
   errors: []
 };
 
-function applyFetchProducts (state = INITIAL_STATE, action) {
+function applyFetchProducts (state = defaultSate, action) {
   let error;
   switch(action.type) {
     case FETCH_PRODUCTS_SUCCESS:
