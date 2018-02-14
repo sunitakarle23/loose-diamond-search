@@ -2,21 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
+import {
+	doFetchProducts,
+	doSuccessFetchProducts,
+	doCancelFetchProducts
+} from '../actions/doFetchProducts';
 
-import * as productsActions from '../actions/doFetchProducts';
 import ProductList from '../components/ProductList';
 import ProductPagination from '../components/Pagination';
 
-class Products extends Component {
-  constructor(props) {
-    super(props);
+class ProductDetails extends Component {
+	componentDidMount () {
+    let atts = Object.assign({}, this.props.default_atts, this.props.current_atts);
+    this.props.fetchProducts(atts);
   }
-  componentDidMount () {
-		this.props.fetchProducts();
-	}
 
-	render () {
+  render () {
+
 		let { loading } = this.props;
+
+    console.log("props=>", this.props);
     let content = '';
     if (loading) {
       content = (
@@ -48,12 +53,11 @@ class Products extends Component {
 				    </Col>
 			    </Row>
 	        <ProductList products = {this.props.productsList.products} />
-          <ProductPagination />
+	        <ProductPagination />
 				</div>
   		</div>
 	  );
 	}
-
 }
 const mapStateToProps = (state) => {
   return {
@@ -67,8 +71,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchProducts: () => dispatch(productsActions.fetchProducts())
+    fetchProducts: (atts) => {
+     	return new Promise ((resolve, reject) => {
+	      let response = dispatch(doFetchProducts(atts));
+	      response.payload.then((payload) =>  {
+      	  dispatch(doSuccessFetchProducts(payload));
+      	  resolve();
+				});
+	    });
+    }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);

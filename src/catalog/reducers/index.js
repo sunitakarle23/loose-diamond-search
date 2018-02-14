@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux';
-import applyFetchProductsReducer from './applyFetchProductsReducer';
+import applyFetchProducts from './applyFetchProducts';
 import applyLdsPropsReducer from './applyLdsPropsReducer';
+import applyDefaultFilterAtts from './applyDefaultFilterAtts';
+import applyCurrentFilterAtts from './applyCurrentFilterAtts';
 
 const catalogReducer = combineReducers({
 	applyLdsPropsReducer,
-	products : applyFetchProductsReducer,
+	applyDefaultFilterAtts,
+	applyCurrentFilterAtts,
+  products: applyFetchProducts,
 });
 
 export default catalogReducer;

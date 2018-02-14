@@ -96,7 +96,7 @@ class App extends Component {
 
 
 	render() {
-		console.log(this.props)
+		console.log("this.props app", this.props )
 		return (
 			<div className="App">
       	<LDSHeader />

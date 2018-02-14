@@ -1,56 +1,61 @@
-.sidebar-wrapper {
+#root .products-loader {
+  text-align: center;
+  min-height: 500px;
+  padding-top: 200px; }
+
+#root .sidebar-wrapper {
   border: 1px solid lightgray; }
-  .sidebar-wrapper #sidebar .search-header {
+  #root .sidebar-wrapper #sidebar .search-header {
     background: #a4a4a4;
     color: #fff;
     text-align: center;
     font-size: 14px;
     padding: 10px 15px;
     margin: 0; }
-  .sidebar-wrapper #sidebar #collapse-diamond-shapes div {
+  #root .sidebar-wrapper #sidebar #collapse-diamond-shapes div {
     display: inline-block; }
 
-#contentPart .results-para {
+#root #contentPart .results-para {
   text-align: center; }
 
-#contentPart #productsListTbl a {
+#root #contentPart #productsListTbl a {
   color: #000; }
-  #contentPart #productsListTbl a:hover {
+  #root #contentPart #productsListTbl a:hover {
     text-decoration: none; }
 
-#contentPart #productsListTbl thead tr th {
+#root #contentPart #productsListTbl thead tr th {
   background-color: #a4a4a4;
   color: #fff; }
-  #contentPart #productsListTbl thead tr th img {
+  #root #contentPart #productsListTbl thead tr th img {
     float: left; }
 
-#contentPart #productsListTbl thead tr th.sort {
+#root #contentPart #productsListTbl thead tr th.sort {
   cursor: pointer;
   text-align: center; }
   @media (max-width: 992px) {
-    #contentPart #productsListTbl thead tr th.sort {
+    #root #contentPart #productsListTbl thead tr th.sort {
       padding-left: 15px; } }
-  #contentPart #productsListTbl thead tr th.sort .arrow-img.up,
-  #contentPart #productsListTbl thead tr th.sort .arrow-img.down {
+  #root #contentPart #productsListTbl thead tr th.sort .arrow-img.up,
+  #root #contentPart #productsListTbl thead tr th.sort .arrow-img.down {
     display: none; }
 
-#contentPart #productsListTbl thead tr th.up-sort .arrow-img.up {
+#root #contentPart #productsListTbl thead tr th.up-sort .arrow-img.up {
   display: inline-block; }
 
-#contentPart #productsListTbl thead tr th.up-sort .arrow-img.down,
-#contentPart #productsListTbl thead tr th.up-sort .arrow-img.both {
+#root #contentPart #productsListTbl thead tr th.up-sort .arrow-img.down,
+#root #contentPart #productsListTbl thead tr th.up-sort .arrow-img.both {
   display: none; }
 
-#contentPart #productsListTbl thead tr th.down-sort .arrow-img.up,
-#contentPart #productsListTbl thead tr th.down-sort .arrow-img.both {
+#root #contentPart #productsListTbl thead tr th.down-sort .arrow-img.up,
+#root #contentPart #productsListTbl thead tr th.down-sort .arrow-img.both {
   display: none; }
 
-#contentPart #productsListTbl thead tr th.down-sort .arrow-img.down {
+#root #contentPart #productsListTbl thead tr th.down-sort .arrow-img.down {
   display: inline-block; }
 
-#contentPart #productsListTbl .plp-actions-column .btn-link {
+#root #contentPart #productsListTbl .plp-actions-column .btn-link {
   display: block;
   font-weight: bold !important; }
 
-#contentPart #productPagination {
+#root #contentPart #productPagination {
   float: right; }

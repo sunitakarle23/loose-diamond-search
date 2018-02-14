@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
 import createHistory from 'history/createHashHistory'
-import { routerMiddleware } from 'react-router-redux'
+import { routerMiddleware } from 'react-router-redux';
+import thunk from 'redux-thunk';
 
 // import the root reducer
 import rootReducer from './rootReducer';
@@ -13,6 +14,7 @@ const navMiddleware = routerMiddleware(history)
 
 const store = createStore(
 	rootReducer,
+	applyMiddleware(thunk),
 	applyMiddleware(navMiddleware)
 );
 
