@@ -239,3 +239,4 @@ export const SESSION = getSession();
 export const mappedNameProps = getMappedNameProps();
 
 console.log('App @process.env =', process.env)
+console.log('App SESSION =', SESSION)

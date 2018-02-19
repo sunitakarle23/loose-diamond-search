@@ -40,7 +40,7 @@
     display: none; }
 
 #root #contentPart #productsListTbl thead tr th.up-sort .arrow-img.up {
-  display: inline-block; }
+  display: inline-block !important; }
 
 #root #contentPart #productsListTbl thead tr th.up-sort .arrow-img.down,
 #root #contentPart #productsListTbl thead tr th.up-sort .arrow-img.both {
@@ -51,7 +51,7 @@
   display: none; }
 
 #root #contentPart #productsListTbl thead tr th.down-sort .arrow-img.down {
-  display: inline-block; }
+  display: inline-block !important; }
 
 #root #contentPart #productsListTbl .plp-actions-column .btn-link {
   display: block;

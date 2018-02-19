@@ -57,7 +57,7 @@
 		      }
 		      th.up-sort {
 		        .arrow-img.up {
-		          display: inline-block;
+		          display: inline-block !important;
 		        }
 		        .arrow-img.down,
 		        .arrow-img.both {
@@ -70,7 +70,7 @@
 		          display: none;
 		        }
 		        .arrow-img.down {
-		          display: inline-block;
+		          display: inline-block !important;
 		        }
 		      }
 		    }

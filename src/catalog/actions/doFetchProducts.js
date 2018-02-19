@@ -34,14 +34,15 @@ export const fetchProducts = () => {
     });
 
     let ROOT_URL = `${API_ROOT_URL}/optportal/services/brand/diamondsearch.json?${q}`;
+      axios.get(ROOT_URL)
+      .then(function (response) {
+         dispatch(doSuccessFetchProducts(response.data));
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+         dispatch(doCancelFetchProducts(error))
+      });
 
-    return axios.get(ROOT_URL)
-    .then(response => {
-      // Handle data with sync action
-      dispatch(doSuccessFetchProducts(response.data));
-    })
-    .catch(error => {
-      dispatch(doCancelFetchProducts(error))
-    });
   };
 };1

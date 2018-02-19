@@ -1,18 +1,19 @@
+import { SESSION } from '../constants';
 import Helpers from './helpers';
 import _ from 'lodash';
-import { SESSION } from '../constants';
 
-const isPPCField =() => {
-  if (!SESSION) return;
-
-	if(SESSION.purpose === 'browsing'){
-		return true
-	}else{
+function isPPCField() {
+  if (!SESSION) {
+    return
+  }
+  if(SESSION.purpose === 'browsing'){
+    return true
+  }else{
 		 return false;
 	}
 }
 
-const isAffiliated = () => {
+function isAffiliated () {
   if (!SESSION) return;
 
   if(SESSION.catalogProductCompany === 'AFFILIATED_ONLY') {
@@ -22,31 +23,30 @@ const isAffiliated = () => {
   }
 }
 
-const hasEmailRole = () => {
-  if (_.contains(SESSION.user.roles, 'ROLE_EMAIL')) {
+function hasEmailRole (){
+  if (_.indexOf(SESSION.user.roles, 'ROLE_EMAIL')) {
     return true;
   } else {
     return false;
   }
 }
 
-const hasPrintRole = () => {
-
-  if (_.contains(SESSION.user.roles, 'ROLE_PRINT')) {
+function hasPrintRole() {
+  if (_.indexOf(SESSION.user.roles, 'ROLE_PRINT')) {
     return true;
   } else {
     return false;
   }
 }
 
-const hasBasketShown = () =>  {
-  if (_.isUndefined(SESSION.session)) {
+function hasBasketShown() {
+  if (_.isUndefined(SESSION)) {
     return;
   }
 
-  if (SESSION.session.user.company.type === '3') {
+  if (SESSION.user.company.type === '3') {
     return true;
-  } else if (SESSION.session.user.company.basket === 'yes') {
+  } else if (SESSION.user.company.basket === 'yes') {
     return true;
   } else {
     return false;
@@ -60,7 +60,6 @@ export const PARSE_PRODUCT_PRICE = (hash) => {
   };
 
   if (_.isNull(hash.retailPrice) && _.isNull(hash.wChipher)) {
-    //Return as is
     return r;
   }
 
@@ -76,9 +75,9 @@ export const PARSE_PRODUCT_PRICE = (hash) => {
   return r;
 }
 
-export const IS_PPC = isPPCField()
-export const IS_AFFILIATED = isAffiliated()
-export const IS_EMAIL = hasEmailRole()
-export const IS_PRINT = hasPrintRole()
-export const IS_BASKET = hasBasketShown()
+export const IS_PPC = isPPCField();
+export const IS_AFFILIATED = isAffiliated();
+export const IS_EMAIL = hasEmailRole();
+export const IS_PRINT = hasPrintRole();
+export const IS_BASKET = hasBasketShown();
 

@@ -5,12 +5,72 @@ import Helpers from '../../utils/helpers';
 import * as Globals from '../../utils/global';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+import _ from 'lodash';
+import { connect } from 'react-redux'
 class ProductList extends Component {
 
 	constructor(props) {
 		super(props);
 	}
 	componentDidMount() {
+
+	}
+
+	getFilterSortType(prop) {
+		// let r = _.where(opt.lds.sortingMap, {
+		// 	property: prop
+		// });
+		var sortType = 'typevalue_';
+		// if (!_.isEmpty(r)) {
+		// 	sortType = r[0].fieldType == 1 ? 'propvalue_' : 'typevalue_';
+		// }
+		console.log('sortType', sortType);
+		return sortType;
+	}
+
+	getSortProperty(property) {
+		let propertyId;
+		let filteredArr;
+
+		if (property != 'price' && property != 'manufacturer') {
+			filteredArr = _.where(this.props.proptypes, {
+				name: property
+			});
+
+			if (_.isEmpty(filteredArr)) {
+				return;
+			}
+			propertyId = filteredArr[0].id;
+		} else if (property == 'manufacturer') {
+			property = 'brand';
+		}
+
+		let sortType = this.getFilterSortType(property);
+		let s =  property; //propertyId ? sortType + propertyId :
+		return s;
+	}
+
+	handleSortBy(e) {
+		let $target = e.currentTarget
+		let sortProp = _.lowerCase($target.getAttribute('data-prop'));
+		let classlist = $target.classList;
+
+		if(classlist.length == 1) {
+			classlist.add('up-sort');
+		}
+
+		let newSortStatus = ''
+	  if(classlist.contains('up-sort')) {
+			classlist.remove('up-sort');
+			classlist.add('down-sort');
+			newSortStatus = 'desc';
+		} else if (classlist.contains('down-sort')){
+			classlist.remove('down-sort');
+			classlist.add('up-sort');
+			newSortStatus = 'asc';
+		}
+
+		var sortBy = this.getSortProperty(sortProp) + ';' + newSortStatus;
 
 	}
 
@@ -34,47 +94,45 @@ class ProductList extends Component {
 	}
 
 	getTableHeader() {
+		let p = ['Manufacturer', 'Shape', 'Carat', 'Color', 'Clarity', 'Cut','Measurements', 'PPC', 'price']
 
+		let headerClasses = classNames({
+			'sort': true,
+			'hide': ! Globals.IS_AFFILIATED
+		})
+		const propHeaders = p.map((prop, i) => {
+			if(prop == 'price'){
+				return(
+					<th key={i}
+						data-prop={prop}
+						ref={prop}
+						className={headerClasses}
+						onClick={e => this.handleSortBy(e)}>
+						{this.getPropHeader('$ Total')}
+					</th>
+				)
+			}
+			return(
+				<th key={i}
+					ref={prop}
+					data-prop={prop}
+					className={headerClasses}
+					onClick={e => this.handleSortBy(e)}>
+					{this.getPropHeader(prop)}
+				</th>
+			)
+		});
 
-		const tableHeader = (
+		return (
 			<thead>
-				<tr>
-    			<th ref="manufacturer"
-    				className={ IS_AFFILIATED ? 'sort' :'hide'}
-    				data-prop="manufacturer">
-    				{this.getPropHeader('Manufacturer')}
-    			</th>
-          <th ref="shape" className="sort" data-prop="shape">
-          	{this.getPropHeader('shape')}
-          </th>
-    			<th ref="carat" className="sort sort-reverse" data-prop="carat">
-    				{this.getPropHeader('Carat')}
-    			</th>
-          <th ref="color" className="sort" data-prop="color">
-          	{this.getPropHeader('Color')}
-          </th>
-    			<th ref="clarity" className="sort" data-prop="clarity">
-    				{this.getPropHeader('Clarity')}
-    			</th>
-          <th ref="cut" className="sort" data-prop="cut">
-          	{this.getPropHeader('Cut')}
-          </th>
-          <th ref="measurements" className="sort" data-prop="measurements">
-          	{this.getPropHeader('Measurements')}
-          </th>
-    			<th ref="price_carat" className="sort" data-prop="price_carat">
-    			  {this.getPropHeader('PPC')}
-    			</th>
-    			<th ref="price" className="sort" data-prop="price">
-    				{this.getPropHeader('$ Total')}
-    			</th>
-          <th ref="actions" className="text-center">
-          	{this.getPropHeader('Actions')}
-          </th>
-				</tr>
-			</thead>
-		);
-		return tableHeader;
+			<tr>
+				{propHeaders}
+        <th ref="actions" className="text-center">
+        	{this.getPropHeader('Actions')}
+        </th>
+			</tr>
+		</thead>
+		)
 	}
 
 	getTableBody() {
@@ -100,7 +158,7 @@ class ProductList extends Component {
 
 	    	<tr key={product.id}>
 
-					<td className={ IS_AFFILIATED ? 'sort' :'hide'} >
+					<td className={ Globals.IS_AFFILIATED ? 'sort' :'hide'} >
 						<Link to={productLink} className={productClasses}>
 							{compName}
 						</Link>
@@ -137,7 +195,7 @@ class ProductList extends Component {
 	        		{ properties.lds_measurements }
 	        	</Link>
 	        </td>
-	        <td className={IS_PPC ? 'lds-PPC-col' :'hide'} >
+	        <td className={Globals.IS_PPC ? 'lds-PPC-col' :'hide'} >
 	        	<Link to={productLink} className={productClasses}>
 	        		{ Helpers.getFormattedCurrency(properties.lds_price_carat) }
 	        	</Link>
@@ -153,14 +211,14 @@ class ProductList extends Component {
 								Inquire
 							</Button>
 							<Button
-								className={ Helpers.hasEmailRole ? 'btn-link email-btn' : 'hide'}
+								className={ Globals.IS_EMAIL ? 'btn-link email-btn' : 'hide'}
 								> Email </Button>
 							<Button
-								className={ Helpers.hasPrintRole ? 'btn-link print-btn' : 'hide'}>
+								className={ Globals.IS_PRINT ? 'btn-link print-btn' : 'hide'}>
 								Print
 							</Button>
 							<Button
-								className={ Helpers.hasBasketShown ? 'btn-link add-to-basket' :'hide'} >
+								className={ Globals.IS_BASKET ? 'btn-link add-to-basket' :'hide'} >
 							  Basket
 							</Button>
 							<Label className="hide">
@@ -191,5 +249,15 @@ class ProductList extends Component {
 	}
 
 }
+const mapStateToProps = (state) => {
+  return {
+    ldsProps: state.catalogReducer.applyLdsPropsReducer
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
 
-export default ProductList;
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
